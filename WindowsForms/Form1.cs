@@ -43,7 +43,6 @@ namespace WindowsForms
         {
             ControlsVisibility(false);
         }
-
         private void label1_MouseHover(object sender, EventArgs e)
         {
             ControlsVisibility(true);
