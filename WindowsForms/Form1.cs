@@ -81,12 +81,21 @@ namespace WindowsForms
                 showDateToolStripMenuItem.Text = "Hide date";
                 timer1_Tick(sender, e);
             }
-            
         }
 
         private void showControlsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ControlsVisibility(true);
+            if(btnExit.Visible) 
+            {
+                ControlsVisibility(false);
+                showControlsToolStripMenuItem.Text = "Show controls";
+            }
+            else
+            {
+                showControlsToolStripMenuItem.Text = "Hide controls";
+                ControlsVisibility(true);
+            }
+            
         }
     }
 }
