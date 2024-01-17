@@ -35,6 +35,12 @@
             this.cbShowDate = new System.Windows.Forms.CheckBox();
             this.btnHideControls = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showControlsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -48,6 +54,7 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "The best Alarm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.DoubleClick += new System.EventHandler(this.label1_DoubleClick);
             this.label1.MouseHover += new System.EventHandler(this.label1_MouseHover);
             // 
             // timer1
@@ -89,6 +96,44 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "The Best Alarm";
+            this.notifyIcon1.Visible = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showControlsToolStripMenuItem,
+            this.showDateToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
+            // 
+            // showControlsToolStripMenuItem
+            // 
+            this.showControlsToolStripMenuItem.Name = "showControlsToolStripMenuItem";
+            this.showControlsToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.showControlsToolStripMenuItem.Text = "Show controls";
+            this.showControlsToolStripMenuItem.Click += new System.EventHandler(this.showControlsToolStripMenuItem_Click);
+            // 
+            // showDateToolStripMenuItem
+            // 
+            this.showDateToolStripMenuItem.Name = "showDateToolStripMenuItem";
+            this.showDateToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.showDateToolStripMenuItem.Text = "Show date";
+            this.showDateToolStripMenuItem.Click += new System.EventHandler(this.showDateToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -103,6 +148,7 @@
             this.Text = "Clock";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.White;
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,6 +161,11 @@
         private System.Windows.Forms.CheckBox cbShowDate;
         private System.Windows.Forms.Button btnHideControls;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem showControlsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showDateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

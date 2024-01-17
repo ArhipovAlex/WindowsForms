@@ -20,7 +20,7 @@ namespace WindowsForms
             int startY = 25;
             this.SetDesktopLocation(startX, startY);
             ControlsVisibility(false);
-            cbShowDate.Checked= true;
+            cbShowDate.Checked= false;
         }
         void ControlsVisibility(bool visible)
         {
@@ -53,6 +53,38 @@ namespace WindowsForms
             ControlsVisibility(false);
         }
         private void label1_MouseHover(object sender, EventArgs e)
+        {
+            //ControlsVisibility(true);
+        }
+
+        private void label1_DoubleClick(object sender, EventArgs e)
+        {
+            ControlsVisibility(true);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnExit_Click(sender,e);
+        }
+
+        private void showDateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(cbShowDate.Checked)
+            {
+                cbShowDate.Checked = false;
+                showDateToolStripMenuItem.Text = "Show date";
+                timer1_Tick(sender, e);
+            }
+            else
+            {
+                cbShowDate.Checked = true;
+                showDateToolStripMenuItem.Text = "Hide date";
+                timer1_Tick(sender, e);
+            }
+            
+        }
+
+        private void showControlsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ControlsVisibility(true);
         }
