@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Drawing.Text;
 
 namespace WindowsForms
 {
     public partial class Form1 : Form
     {
+        ChoseForm chooseForm;
         public Form1()
         {
             InitializeComponent();
@@ -21,15 +24,19 @@ namespace WindowsForms
             this.SetDesktopLocation(startX, startY);
             ControlsVisibility(false);
             cbShowDate.Checked= false;
+            Directory.SetCurrentDirectory("..\\..\\Fonts");
+            chooseForm = new ChoseForm();
         }
         void ControlsVisibility(bool visible)
         {
             cbShowDate.Visible = visible;
             btnExit.Visible = visible;
             btnHideControls.Visible = visible;
+            btnChooseFont.Visible = visible;
             this.ShowInTaskbar= visible;
             this.TransparencyKey = !visible ? SystemColors.Control : Color.White;
             this.FormBorderStyle = !visible ? FormBorderStyle.None : FormBorderStyle.Sizable;
+            
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -72,14 +79,16 @@ namespace WindowsForms
             if(cbShowDate.Checked)
             {
                 cbShowDate.Checked = false;
-                showDateToolStripMenuItem.Text = "Show date";
+                //showDateToolStripMenuItem.Text = "Show date";
                 timer1_Tick(sender, e);
+                showDateToolStripMenuItem.Checked = false;
             }
             else
             {
                 cbShowDate.Checked = true;
-                showDateToolStripMenuItem.Text = "Hide date";
+                //showDateToolStripMenuItem.Text = "Hide date";
                 timer1_Tick(sender, e);
+                showDateToolStripMenuItem.Checked= true;
             }
         }
 
@@ -88,14 +97,25 @@ namespace WindowsForms
             if(btnExit.Visible) 
             {
                 ControlsVisibility(false);
-                showControlsToolStripMenuItem.Text = "Show controls";
+                //showControlsToolStripMenuItem.Text = "Show controls"; 
+                showControlsToolStripMenuItem.Checked = false;
             }
             else
             {
-                showControlsToolStripMenuItem.Text = "Hide controls";
+                showControlsToolStripMenuItem.Checked = true;
+                //showControlsToolStripMenuItem.Text = "Hide controls";
                 ControlsVisibility(true);
             }
             
+        }
+
+        private void btnChooseFont_Click(object sender, EventArgs e)
+        {
+            DialogResult result= chooseForm.ShowDialog(this);
+            if(result==DialogResult.OK) 
+            { 
+                label1.Font= chooseForm.NewFont;
+            }
         }
     }
 }

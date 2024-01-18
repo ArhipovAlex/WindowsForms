@@ -40,6 +40,10 @@
             this.showControlsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnChooseFont = new System.Windows.Forms.Button();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.chooseFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +51,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.ContextMenuStrip = this.contextMenuStrip1;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
@@ -77,7 +82,7 @@
             // btnHideControls
             // 
             this.btnHideControls.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnHideControls.Location = new System.Drawing.Point(28, 238);
+            this.btnHideControls.Location = new System.Drawing.Point(28, 295);
             this.btnHideControls.Name = "btnHideControls";
             this.btnHideControls.Size = new System.Drawing.Size(233, 54);
             this.btnHideControls.TabIndex = 3;
@@ -88,7 +93,7 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnExit.Location = new System.Drawing.Point(28, 298);
+            this.btnExit.Location = new System.Drawing.Point(28, 355);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(233, 54);
             this.btnExit.TabIndex = 4;
@@ -109,9 +114,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showControlsToolStripMenuItem,
             this.showDateToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.chooseFontToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 140);
             // 
             // showControlsToolStripMenuItem
             // 
@@ -134,11 +142,40 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
+            // 
+            // btnChooseFont
+            // 
+            this.btnChooseFont.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnChooseFont.Location = new System.Drawing.Point(28, 237);
+            this.btnChooseFont.Name = "btnChooseFont";
+            this.btnChooseFont.Size = new System.Drawing.Size(233, 54);
+            this.btnChooseFont.TabIndex = 5;
+            this.btnChooseFont.Text = "Choose font";
+            this.btnChooseFont.UseVisualStyleBackColor = true;
+            this.btnChooseFont.Click += new System.EventHandler(this.btnChooseFont_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(207, 6);
+            // 
+            // chooseFontToolStripMenuItem
+            // 
+            this.chooseFontToolStripMenuItem.Name = "chooseFontToolStripMenuItem";
+            this.chooseFontToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.chooseFontToolStripMenuItem.Text = "Choose font";
+            this.chooseFontToolStripMenuItem.Click += new System.EventHandler(this.btnChooseFont_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(628, 363);
+            this.ClientSize = new System.Drawing.Size(628, 421);
+            this.Controls.Add(this.btnChooseFont);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnHideControls);
             this.Controls.Add(this.cbShowDate);
@@ -166,6 +203,10 @@
         private System.Windows.Forms.ToolStripMenuItem showControlsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showDateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.Button btnChooseFont;
+        private System.Windows.Forms.ToolStripMenuItem chooseFontToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
     }
 }
 
