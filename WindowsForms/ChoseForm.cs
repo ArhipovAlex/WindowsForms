@@ -12,18 +12,28 @@ using System.Drawing.Text;
 
 namespace WindowsForms
 {
-    public partial class ChoseForm : Form
+    public partial class ChooseFont : Form
     {
+        public int Index { get { return index; } }
+        public string[] AllFonts { get { return allFonts; } }
+        int index;
         string[] allFonts;
         public System.Drawing.Font NewFont { get; set; }
-        public ChoseForm()
+        public ChooseFont()
         {
+
             InitializeComponent();
-            allFonts = Directory.GetFiles(Directory.GetCurrentDirectory(),"*.?tf", SearchOption.AllDirectories);
+            if(allFonts==null)allFonts = Directory.GetFiles(Directory.GetCurrentDirectory(),"*.?tf", SearchOption.AllDirectories);
             foreach (string i in allFonts)
             {
                 cbFonts.Items.Add(i.Split('\\').Last());
             }
+            //lblExample.ForeColor= System.Drawing.Color.Red;//цвет текста
+            //lblExample.BackColor= System.Drawing.Color.Green;//цвет фона
+            /*cbFonts.SelectedIndex = Array.IndexOf(allFonts, font);
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile(allFonts[cbFonts.SelectedIndex]);
+            lblExample.Font = new Font(pfc.Families[0],48);*/
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -45,9 +55,10 @@ namespace WindowsForms
             PrivateFontCollection pfc = new PrivateFontCollection();
             //pfc.AddFontFile(cbFonts.SelectedItem.ToString());
             pfc.AddFontFile(allFonts[cbFonts.SelectedIndex]);
-            //MessageBox.Show(this, allFonts[cbFonts.SelectedIndex]);
             NewFont = new Font(pfc.Families[0], 48);
             lblExample.Font = NewFont;
+            index = cbFonts.SelectedIndex;
         }
+    
     }
 }

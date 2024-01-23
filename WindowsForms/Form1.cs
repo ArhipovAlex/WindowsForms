@@ -14,7 +14,15 @@ namespace WindowsForms
 {
     public partial class Form1 : Form
     {
-        ChoseForm chooseForm;
+        string fontFile;
+        int size;
+        System.Drawing.Font font;
+        Color foreground;
+        Color background;
+
+        bool showDate;
+        bool showControls;
+        ChooseFont chooseFont;
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +33,11 @@ namespace WindowsForms
             ControlsVisibility(false);
             cbShowDate.Checked= false;
             Directory.SetCurrentDirectory("..\\..\\Fonts");
-            chooseForm = new ChoseForm();
+            chooseFont = new ChooseFont();
+            label1.ForeColor = Color.Red;
+            label1.BackColor = Color.Black;
+            size = 48;
+            LoadSettings();
         }
         void ControlsVisibility(bool visible)
         {
@@ -62,6 +74,7 @@ namespace WindowsForms
         private void label1_MouseHover(object sender, EventArgs e)
         {
             //ControlsVisibility(true);
+            ControlsVisibility(true);
         }
 
         private void label1_DoubleClick(object sender, EventArgs e)
@@ -71,6 +84,7 @@ namespace WindowsForms
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveSettings();
             btnExit_Click(sender,e);
         }
 
@@ -111,10 +125,60 @@ namespace WindowsForms
 
         private void btnChooseFont_Click(object sender, EventArgs e)
         {
-            DialogResult result= chooseForm.ShowDialog(this);
+            DialogResult result= chooseFont.ShowDialog(this);
             if(result==DialogResult.OK) 
             { 
-                label1.Font= chooseForm.NewFont;
+                label1.Font= chooseFont.NewFont;
+                fontFile = chooseFont.AllFonts[chooseFont.Index];
+            }
+        }
+        public void SaveSettings()
+        {
+            StreamWriter sw = new StreamWriter("Settings.cfg");
+            sw.WriteLine(fontFile);
+            sw.WriteLine(label1.Font.Size);
+            sw.WriteLine(label1.ForeColor.ToArgb());
+            sw.WriteLine(label1.BackColor.ToArgb());
+            sw.Close();
+        }
+        public void LoadSettings()
+        {
+            //Directory.SetCurrentDirectory("..\\..\\Fonts");
+            //MessageBox.Show(this, Directory.GetCurrentDirectory());
+            StreamReader sr = new StreamReader("Settings.cfg");
+            fontFile = sr.ReadLine();
+            size = Convert.ToInt32(sr.ReadLine());
+            foreground = Color.FromArgb(Convert.ToInt32(sr.ReadLine()));
+            background = Color.FromArgb(Convert.ToInt32(sr.ReadLine()));
+            //fontIndex = Convert.ToInt32(sr.ReadLine());
+            sr.Close();
+
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile(fontFile);
+            System.Drawing.Font font = new System.Drawing.Font(pfc.Families[0], size);
+            label1.Font = font;
+            label1.BackColor = background;
+            label1.ForeColor = foreground;
+        }
+        private void fontColorToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog1 = new ColorDialog();
+            //colorDialog1.FullOpen= true;
+            DialogResult result=colorDialog1.ShowDialog(this);
+            if (result == DialogResult.OK)
+            { 
+                label1.ForeColor = colorDialog1.Color;
+            }
+        }
+
+        private void backColorToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog1 = new ColorDialog();
+            //colorDialog1.FullOpen= true;
+            DialogResult result = colorDialog1.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                label1.BackColor = colorDialog1.Color;
             }
         }
     }

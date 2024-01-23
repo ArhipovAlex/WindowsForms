@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms
 {
-    partial class ChoseForm
+    partial class ChooseFont
     {
         /// <summary>
         /// Required designer variable.
@@ -88,7 +88,7 @@
             this.lblFullName.Text = "label1";
             this.lblFullName.Visible = false;
             // 
-            // ChoseForm
+            // ChooseFont
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,8 +98,8 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lblExample);
             this.Controls.Add(this.cbFonts);
-            this.Name = "ChoseForm";
-            this.Text = "ChoseForm";
+            this.Name = "ChooseFont";
+            this.Text = "ChooseFont";
             this.ResumeLayout(false);
             this.PerformLayout();
 
