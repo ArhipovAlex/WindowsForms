@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Text;
+using System.Drawing.Imaging;
+using WMPLib;
 
 namespace WindowsForms
 {
@@ -23,6 +25,14 @@ namespace WindowsForms
         bool showDate;
         bool showControls;
         ChooseFont chooseFont;
+        AlarmForm alarmForm;
+
+        int music = 0;//переменная-флаг: 0 - музыка не играет, и не готова играть; 1 - музыка не играет, но готова играть; 3 - музыка играет
+        string nameFileMusic = "";//путь до выбранного файла для сигнала будильника
+        string Hours = "";//установленные на будильнике часы
+        string Minutes = "";//установленные на будильнике минуты
+        string Seconds = "";//установленные на будильнике секунды
+        WMPLib.WindowsMediaPlayer WMP = new WMPLib.WindowsMediaPlayer();
         public Form1()
         {
             InitializeComponent();
@@ -34,10 +44,14 @@ namespace WindowsForms
             cbShowDate.Checked= false;
             Directory.SetCurrentDirectory("..\\..\\Fonts");
             chooseFont = new ChooseFont();
+            alarmForm = new AlarmForm();
             label1.ForeColor = Color.Red;
             label1.BackColor = Color.Black;
             size = 48;
             LoadSettings();
+            
+            cbRunAlarm.Enabled = false;//изначально включить будильник нельзя, пока не введены настройки
+            
         }
         void ControlsVisibility(bool visible)
         {
@@ -45,6 +59,8 @@ namespace WindowsForms
             btnExit.Visible = visible;
             btnHideControls.Visible = visible;
             btnChooseFont.Visible = visible;
+            btnSetupAlarm.Visible = visible;
+            cbRunAlarm.Visible = visible;
             this.ShowInTaskbar= visible;
             this.TransparencyKey = !visible ? SystemColors.Control : Color.White;
             this.FormBorderStyle = !visible ? FormBorderStyle.None : FormBorderStyle.Sizable;
@@ -59,6 +75,23 @@ namespace WindowsForms
             {
                 string date = DateTime.Now.ToString("yyyy.MM.dd ddd");
                 label1.Text = $"{label1.Text}\n{date}";
+            }
+            if
+                (music == 1 &&
+                    (
+                    Convert.ToInt32(Hours) == Convert.ToInt32(DateTime.Now.Hour.ToString()) &&
+                    Convert.ToInt32(Minutes) == Convert.ToInt32(DateTime.Now.Minute.ToString()) &&
+                    Convert.ToInt32(Seconds) == Convert.ToInt32(DateTime.Now.Second.ToString())
+                    )&&
+                cbRunAlarm.Checked
+                )//параметры введены и наступает время включить будильник
+            {
+                WMP.URL = nameFileMusic;
+                WMP.settings.volume = 100;
+                WMP.controls.play();
+                music = 3;//музыка играет
+                btnSetupAlarm.Text = "Stop Alarm";
+                cbRunAlarm.Enabled = false;
             }
         }
 
@@ -179,6 +212,55 @@ namespace WindowsForms
             if (result == DialogResult.OK)
             {
                 label1.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void btnSetupAlarm_Click(object sender, EventArgs e)//вызов окна настроек и передача в случае нормальных настроек
+        {
+            if (music==0) //кнопка работает для установки параметров
+            { 
+                DialogResult result = alarmForm.ShowDialog(this);
+                if (result == DialogResult.OK)//принимаем параметры и даем возможность активировать будильник
+                {
+                    Hours = alarmForm.Hours;
+                    Minutes = alarmForm.Minutes;
+                    Seconds = alarmForm.Seconds;
+                    nameFileMusic = alarmForm.nameFileMusic;
+                    cbRunAlarm.Enabled = true;
+                    music = 1;
+                }
+                else //иначе очищаем параметры и снимаем активацию будильника
+                {
+                    music = 0;
+                    Hours = null;
+                    Minutes = null;
+                    Seconds = null;
+                    nameFileMusic = null;
+                    cbRunAlarm.Enabled = false;
+                    cbRunAlarm.Checked = false;
+                }
+            }
+            else if
+                ( music==1&&
+                    (
+                    Convert.ToInt32(Hours)==Convert.ToInt32(DateTime.Now.Hour.ToString())&& 
+                    Convert.ToInt32(Minutes) == Convert.ToInt32(DateTime.Now.Minute.ToString())&&
+                    Convert.ToInt32(Seconds) == Convert.ToInt32(DateTime.Now.Second.ToString())
+                    )
+                )//параметры введены и наступает время включить будильник
+            {
+                WMP.URL = nameFileMusic;
+                WMP.settings.volume = 100;
+                WMP.controls.play();
+                music = 3;//музыка играет
+                btnSetupAlarm.Text = "Stop Alarm";
+                cbRunAlarm.Enabled = false;
+            }
+            else if(music==3)//музыка играет и кнопка работает для остановки будильника
+            {
+                WMP.controls.stop();
+                btnSetupAlarm.Text = "Setup Alarm";
+                cbRunAlarm.Enabled = true;
             }
         }
     }

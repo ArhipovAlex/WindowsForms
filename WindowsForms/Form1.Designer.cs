@@ -36,6 +36,9 @@
             this.showDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.chooseFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.backColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -44,10 +47,11 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.btnChooseFont = new System.Windows.Forms.Button();
-            this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fontColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.backColorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSetupAlarm = new System.Windows.Forms.Button();
+            this.cbRunAlarm = new System.Windows.Forms.CheckBox();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -77,43 +81,66 @@
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 164);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 136);
             // 
             // showControlsToolStripMenuItem
             // 
             this.showControlsToolStripMenuItem.Name = "showControlsToolStripMenuItem";
-            this.showControlsToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.showControlsToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.showControlsToolStripMenuItem.Text = "Show controls";
             this.showControlsToolStripMenuItem.Click += new System.EventHandler(this.showControlsToolStripMenuItem_Click);
             // 
             // showDateToolStripMenuItem
             // 
             this.showDateToolStripMenuItem.Name = "showDateToolStripMenuItem";
-            this.showDateToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.showDateToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.showDateToolStripMenuItem.Text = "Show date";
             this.showDateToolStripMenuItem.Click += new System.EventHandler(this.showDateToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(168, 6);
             // 
             // chooseFontToolStripMenuItem
             // 
             this.chooseFontToolStripMenuItem.Name = "chooseFontToolStripMenuItem";
-            this.chooseFontToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.chooseFontToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.chooseFontToolStripMenuItem.Text = "Choose font";
             this.chooseFontToolStripMenuItem.Click += new System.EventHandler(this.btnChooseFont_Click);
+            // 
+            // colorToolStripMenuItem
+            // 
+            this.colorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fontColorToolStripMenuItem1,
+            this.backColorToolStripMenuItem1});
+            this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
+            this.colorToolStripMenuItem.Text = "Color";
+            // 
+            // fontColorToolStripMenuItem1
+            // 
+            this.fontColorToolStripMenuItem1.Name = "fontColorToolStripMenuItem1";
+            this.fontColorToolStripMenuItem1.Size = new System.Drawing.Size(161, 26);
+            this.fontColorToolStripMenuItem1.Text = "Font color";
+            this.fontColorToolStripMenuItem1.Click += new System.EventHandler(this.fontColorToolStripMenuItem1_Click);
+            // 
+            // backColorToolStripMenuItem1
+            // 
+            this.backColorToolStripMenuItem1.Name = "backColorToolStripMenuItem1";
+            this.backColorToolStripMenuItem1.Size = new System.Drawing.Size(161, 26);
+            this.backColorToolStripMenuItem1.Text = "Back color";
+            this.backColorToolStripMenuItem1.Click += new System.EventHandler(this.backColorToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(168, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -174,34 +201,45 @@
             this.btnChooseFont.UseVisualStyleBackColor = true;
             this.btnChooseFont.Click += new System.EventHandler(this.btnChooseFont_Click);
             // 
-            // colorToolStripMenuItem
+            // btnSetupAlarm
             // 
-            this.colorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fontColorToolStripMenuItem1,
-            this.backColorToolStripMenuItem1});
-            this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
-            this.colorToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.colorToolStripMenuItem.Text = "Color";
+            this.btnSetupAlarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnSetupAlarm.Location = new System.Drawing.Point(355, 237);
+            this.btnSetupAlarm.Name = "btnSetupAlarm";
+            this.btnSetupAlarm.Size = new System.Drawing.Size(233, 54);
+            this.btnSetupAlarm.TabIndex = 6;
+            this.btnSetupAlarm.Text = "Setup Alarm";
+            this.btnSetupAlarm.UseVisualStyleBackColor = true;
+            this.btnSetupAlarm.Click += new System.EventHandler(this.btnSetupAlarm_Click);
             // 
-            // fontColorToolStripMenuItem1
+            // cbRunAlarm
             // 
-            this.fontColorToolStripMenuItem1.Name = "fontColorToolStripMenuItem1";
-            this.fontColorToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.fontColorToolStripMenuItem1.Text = "Font color";
-            this.fontColorToolStripMenuItem1.Click += new System.EventHandler(this.fontColorToolStripMenuItem1_Click);
+            this.cbRunAlarm.AutoSize = true;
+            this.cbRunAlarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbRunAlarm.Location = new System.Drawing.Point(355, 313);
+            this.cbRunAlarm.Name = "cbRunAlarm";
+            this.cbRunAlarm.Size = new System.Drawing.Size(169, 36);
+            this.cbRunAlarm.TabIndex = 7;
+            this.cbRunAlarm.Text = "Run Alarm";
+            this.cbRunAlarm.UseVisualStyleBackColor = true;
             // 
-            // backColorToolStripMenuItem1
+            // axWindowsMediaPlayer1
             // 
-            this.backColorToolStripMenuItem1.Name = "backColorToolStripMenuItem1";
-            this.backColorToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.backColorToolStripMenuItem1.Text = "Back color";
-            this.backColorToolStripMenuItem1.Click += new System.EventHandler(this.backColorToolStripMenuItem1_Click);
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(0, 0);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(75, 23);
+            this.axWindowsMediaPlayer1.TabIndex = 8;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(628, 421);
+            this.Controls.Add(this.axWindowsMediaPlayer1);
+            this.Controls.Add(this.cbRunAlarm);
+            this.Controls.Add(this.btnSetupAlarm);
             this.Controls.Add(this.btnChooseFont);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnHideControls);
@@ -213,6 +251,7 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.White;
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,6 +276,9 @@
         private System.Windows.Forms.ToolStripMenuItem colorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fontColorToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem backColorToolStripMenuItem1;
+        private System.Windows.Forms.Button btnSetupAlarm;
+        private System.Windows.Forms.CheckBox cbRunAlarm;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 
