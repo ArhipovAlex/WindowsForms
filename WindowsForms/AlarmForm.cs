@@ -24,6 +24,7 @@ namespace WindowsForms
             tbHour.Text =DateTime.Now.Hour.ToString();
             tbMinutes.Text = DateTime.Now.Minute.ToString();
             tbSeconds.Text = DateTime.Now.Second.ToString();
+            Records = new string[10];
             CheckStatus();
         }
 
@@ -139,8 +140,8 @@ namespace WindowsForms
                 //    return;
                 //}
             }
-            Records[Records.Length]=Hours+":"+Minutes+":"+Seconds+" "+nameFileMusic;
-            string Record=Hours+":"+Minutes+":"+Seconds+" "+nameFileMusic.Split('\\').Last();
+            Records[Records.Length-1]=tbHour.Text+":"+tbMinutes.Text+":"+tbSeconds.Text+" "+nameFileMusic;
+            string Record= tbHour.Text + ":"+ tbMinutes.Text + ":"+ tbSeconds.Text + " "+nameFileMusic.Split('\\').Last();
             listBox1.Items.Add(Record);
             CheckStatus();
         }

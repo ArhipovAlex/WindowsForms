@@ -50,7 +50,7 @@ namespace WindowsForms
 			label1.BackColor = Color.Black;
 			size = 48;
 			LoadSettings();
-
+			Records = new string[10];
 			cbRunAlarm.Enabled = false;//изначально включить будильник нельзя, пока не введены настройки
 
 		}
