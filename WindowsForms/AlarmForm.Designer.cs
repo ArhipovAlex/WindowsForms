@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlarmForm));
 			this.btnOK = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
@@ -41,6 +42,8 @@
 			this.btnChooseMusic = new System.Windows.Forms.Button();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+			this.btnSelectSound = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnOK
@@ -170,11 +173,32 @@
 			this.listBox1.Size = new System.Drawing.Size(439, 196);
 			this.listBox1.TabIndex = 11;
 			// 
+			// dateTimePicker1
+			// 
+			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+			this.dateTimePicker1.Location = new System.Drawing.Point(13, 375);
+			this.dateTimePicker1.Name = "dateTimePicker1";
+			this.dateTimePicker1.Size = new System.Drawing.Size(277, 22);
+			this.dateTimePicker1.TabIndex = 12;
+			// 
+			// btnSelectSound
+			// 
+			this.btnSelectSound.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.btnSelectSound.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.btnSelectSound.Location = new System.Drawing.Point(130, 333);
+			this.btnSelectSound.Name = "btnSelectSound";
+			this.btnSelectSound.Size = new System.Drawing.Size(213, 35);
+			this.btnSelectSound.TabIndex = 13;
+			this.btnSelectSound.Text = "Select sound";
+			this.btnSelectSound.UseVisualStyleBackColor = true;
+			// 
 			// AlarmForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(466, 380);
+			this.ClientSize = new System.Drawing.Size(466, 421);
+			this.Controls.Add(this.btnSelectSound);
+			this.Controls.Add(this.dateTimePicker1);
 			this.Controls.Add(this.listBox1);
 			this.Controls.Add(this.btnChooseMusic);
 			this.Controls.Add(this.lblStatus);
@@ -187,6 +211,8 @@
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnOK);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "AlarmForm";
 			this.Text = "Настройки будильника";
 			this.ResumeLayout(false);
@@ -209,5 +235,7 @@
         private System.Windows.Forms.Button btnChooseMusic;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.DateTimePicker dateTimePicker1;
+		private System.Windows.Forms.Button btnSelectSound;
 	}
 }

@@ -52,7 +52,7 @@ namespace WindowsForms
 			LoadSettings();
 
 			cbRunAlarm.Enabled = false;//изначально включить будильник нельзя, пока не введены настройки
-
+			topMostToolStripMenuItem.Checked= true;
 		}
 		void ControlsVisibility(bool visible)
 		{
@@ -116,7 +116,7 @@ namespace WindowsForms
 		private void label1_MouseHover(object sender, EventArgs e)
 		{
 			//ControlsVisibility(true);
-			ControlsVisibility(true);
+			//ControlsVisibility(true);
 		}
 
 		private void label1_DoubleClick(object sender, EventArgs e)
@@ -286,6 +286,22 @@ namespace WindowsForms
 				cbRunAlarm.Checked = false;
 				music = 0;
 			}
+		}
+
+		private void onTopToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			this.TopMost=topMostToolStripMenuItem.Checked;
+		}
+
+		private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+		{
+			this.WindowState= FormWindowState.Minimized;
+			this.WindowState=FormWindowState.Normal;
+		}
+
+		private void alarmToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnSetupAlarm_Click(sender, e);
 		}
 	}
 }
