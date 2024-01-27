@@ -13,6 +13,7 @@ namespace WindowsForms
 {
     public partial class AlarmForm : Form
     {
+        public string[] Records;
         public string nameFileMusic = "";//путь до выбранного файла для сигнала будильника
         public string Hours = "";//установленные на будильнике часы
         public string Minutes = "";//установленные на будильнике минуты
@@ -28,7 +29,11 @@ namespace WindowsForms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            Hours=tbHour.Text;
+            Minutes=tbMinutes.Text;
+            Seconds=tbSeconds.Text;
 
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -49,33 +54,33 @@ namespace WindowsForms
             else
             {
                 lblStatus.Text += "\nWrong Time: ";
-                if (!(CorrectHour()))
-                {
-                    lblStatus.Text += "check Hours ";
-                    tbHour.ForeColor= Color.Red;
-                }
-                else 
-                { 
-                    tbHour.ForeColor = Color.Black; 
-                }
-                if(!(CorrectMinutes()))
-                {
-                    lblStatus.Text += "check Minutes ";
-                    tbMinutes.ForeColor= Color.Red;
-                }
-                else 
-                { 
-                    tbMinutes.ForeColor = Color.Black; 
-                }
-                if(!(CorrectSecond()))
-                {
-                    lblStatus.Text += "check Seconds";
-                    tbSeconds.ForeColor= Color.Red;
-                }
-                else
-                {
-                    tbSeconds.ForeColor = Color.Black;
-                }
+            }
+            if (!(CorrectHour()))
+            {
+                lblStatus.Text += "check Hours ";
+                tbHour.ForeColor= Color.Red;
+            }
+            else 
+            { 
+                tbHour.ForeColor = Color.Black; 
+            }
+            if(!(CorrectMinutes()))
+            {
+                lblStatus.Text += "check Minutes ";
+                tbMinutes.ForeColor= Color.Red;
+            }
+            else 
+            { 
+                tbMinutes.ForeColor = Color.Black; 
+            }
+            if(!(CorrectSecond()))
+            {
+                lblStatus.Text += "check Seconds";
+                tbSeconds.ForeColor= Color.Red;
+            }
+            else
+            {
+                tbSeconds.ForeColor = Color.Black;
             }
             if(nameFileMusic!= "")
             {
@@ -121,19 +126,22 @@ namespace WindowsForms
         }
         private void btnChooseMusic_Click(object sender, EventArgs e)
         {
-            string extension = "";//расширение выбранного файла
+            if (!(CorrectHour() && CorrectMinutes() && CorrectSecond())) return;//если время неправильное не даем внести запись в ListBox
+            //string extension = "";//расширение выбранного файла
             if(openFileDialog1.ShowDialog()==DialogResult.OK)
             {
                 nameFileMusic= openFileDialog1.FileName;
-                extension=Path.GetExtension(nameFileMusic);
-                if(extension!=".mp3")
-                {
-                    MessageBox.Show("Not mp3-file!");
-                    nameFileMusic = "";
-                    return;
-                }
+                //extension=Path.GetExtension(nameFileMusic);
+                //if(extension!=".mp3")
+                //{
+                //    MessageBox.Show("Not mp3-file!");
+                //    nameFileMusic = "";
+                //    return;
+                //}
             }
-
+            Records[Records.Length]=Hours+":"+Minutes+":"+Seconds+" "+nameFileMusic;
+            string Record=Hours+":"+Minutes+":"+Seconds+" "+nameFileMusic.Split('\\').Last();
+            listBox1.Items.Add(Record);
             CheckStatus();
         }
     }
