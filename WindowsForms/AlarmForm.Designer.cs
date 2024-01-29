@@ -41,6 +41,7 @@
 			this.btnChooseMusic = new System.Windows.Forms.Button();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.lblRecord = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// btnOK
@@ -138,7 +139,7 @@
 			// 
 			this.lblStatus.AutoSize = true;
 			this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.lblStatus.Location = new System.Drawing.Point(296, 87);
+			this.lblStatus.Location = new System.Drawing.Point(313, 82);
 			this.lblStatus.Name = "lblStatus";
 			this.lblStatus.Size = new System.Drawing.Size(74, 25);
 			this.lblStatus.TabIndex = 9;
@@ -170,11 +171,21 @@
 			this.listBox1.Size = new System.Drawing.Size(439, 196);
 			this.listBox1.TabIndex = 11;
 			// 
+			// lblRecord
+			// 
+			this.lblRecord.AutoSize = true;
+			this.lblRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.lblRecord.Location = new System.Drawing.Point(457, 123);
+			this.lblRecord.Name = "lblRecord";
+			this.lblRecord.Size = new System.Drawing.Size(0, 25);
+			this.lblRecord.TabIndex = 12;
+			// 
 			// AlarmForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(466, 380);
+			this.ClientSize = new System.Drawing.Size(1106, 380);
+			this.Controls.Add(this.lblRecord);
 			this.Controls.Add(this.listBox1);
 			this.Controls.Add(this.btnChooseMusic);
 			this.Controls.Add(this.lblStatus);
@@ -209,5 +220,6 @@
         private System.Windows.Forms.Button btnChooseMusic;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.Label lblRecord;
 	}
 }

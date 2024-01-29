@@ -27,12 +27,12 @@ namespace WindowsForms
 		ChooseFont chooseFont;
 		AlarmForm alarmForm;
 
-		int music = 0;//переменная-флаг: 0 - музыка не играет, и не готова играть; 1 - музыка не играет, но готова играть; 3 - музыка играет
+		int music = 0;//переменная-флаг: 0 - музыка не играет, и не готова играть; 1 - музыка не играет, но готова играть; 2 - музыка играет
 		string nameFileMusic = "";//путь до выбранного файла для сигнала будильника
 		string Hours = "";//установленные на будильнике часы
 		string Minutes = "";//установленные на будильнике минуты
 		string Seconds = "";//установленные на будильнике секунды
-		string[] Records;//список будильников
+		List<string> Records;//список будильников
 		WMPLib.WindowsMediaPlayer WMP = new WMPLib.WindowsMediaPlayer();
 		public Form1()
 		{
@@ -50,7 +50,7 @@ namespace WindowsForms
 			label1.BackColor = Color.Black;
 			size = 48;
 			LoadSettings();
-			Records = new string[10];
+			Records = new List<string>();
 			cbRunAlarm.Enabled = false;//изначально включить будильник нельзя, пока не введены настройки
 
 		}
@@ -77,15 +77,7 @@ namespace WindowsForms
 				string date = DateTime.Now.ToString("yyyy.MM.dd ddd");
 				label1.Text = $"{label1.Text}\n{date}";
 			}
-			//if
-			//    (music == 1 &&
-			//        (
-			//        Convert.ToInt32(Hours) == Convert.ToInt32(DateTime.Now.Hour.ToString()) &&
-			//        Convert.ToInt32(Minutes) == Convert.ToInt32(DateTime.Now.Minute.ToString()) &&
-			//        Convert.ToInt32(Seconds) == Convert.ToInt32(DateTime.Now.Second.ToString())
-			//        )&&
-			//    cbRunAlarm.Checked
-			//    )//параметры введены и наступает время включить будильник
+			/*
 			if(music == 1 &&
 				(Convert.ToInt32(Hours) == DateTime.Now.Hour &&
 				Convert.ToInt32(Minutes) == DateTime.Now.Minute &&
@@ -101,7 +93,33 @@ namespace WindowsForms
 				music = 3;//музыка играет
 				btnSetupAlarm.Text = "Stop Alarm";
 				cbRunAlarm.Enabled = false;
+			}*/
+			if(cbRunAlarm.Checked)//включена функция Будильник
+			{ 
+				foreach (string record in Records)//Перебираем каждую строку и сравниваем время в списке с текущим
+				{
+					string date = record.Split(' ')[0];
+					nameFileMusic= record.Substring(9);
+					string timeNow= DateTime.Now.Hour.ToString()+":"+ DateTime.Now.Minute.ToString()+ ":"+DateTime.Now.Second.ToString();
+					if (date==timeNow&&music==1)//совпало время по списку и музыка готова
+					{
+						WMP.URL = nameFileMusic;
+						WMP.settings.volume = 100;
+						WMP.controls.play();
+						music = 2;//музыка играет
+						btnSetupAlarm.Text = "Stop Alarm";
+						cbRunAlarm.Enabled = false;
+					}
+					if (date == timeNow && music == 2)//совпало время по списку с другим файлом но еще играет другая песня
+					{
+						WMP.controls.stop();
+						WMP.URL= nameFileMusic;
+						WMP.settings.volume = 100;
+						WMP.controls.play();
+					}
+				}
 			}
+
 		}
 
 		private void btnExit_Click(object sender, EventArgs e)
@@ -226,27 +244,32 @@ namespace WindowsForms
 
 		private void btnSetupAlarm_Click(object sender, EventArgs e)//вызов окна настроек и передача в случае нормальных настроек
 		{
-			if (music == 0) //кнопка работает для установки параметров
+			if (music == 0 || music==1) //кнопка работает для установки параметров
 			{
 				DialogResult result = alarmForm.ShowDialog(this);
 				if (result == DialogResult.OK)//принимаем параметры и даем возможность активировать будильник
 				{
-					Hours = alarmForm.Hours;
-					Minutes = alarmForm.Minutes;
-					Seconds = alarmForm.Seconds;
-					nameFileMusic = alarmForm.nameFileMusic;
-					if (alarmForm.Records.Length == 0)
+					//Hours = alarmForm.Hours;
+					//Minutes = alarmForm.Minutes;
+					//Seconds = alarmForm.Seconds;
+					//nameFileMusic = alarmForm.nameFileMusic;
+					if (alarmForm.Records.Count == 0)
 					{
-						Records = null;
+						Records.Clear();
 						music = 0;
 					}
 					else 
 					{	
 						cbRunAlarm.Enabled = true;
 						music = 1;
-						for (int i = 0; i < alarmForm.Records.Length; i++)
+						//for (int i = 0; i < alarmForm.Records.Count; i++)
+						//{
+						//	Records[i] = alarmForm.Records[i];
+						//}
+						foreach(string element in alarmForm.Records)
 						{
-							Records[i] = alarmForm.Records[i];
+							Records.Add(element);
+							Console.WriteLine(element);
 						}
 					}
 				}
@@ -261,24 +284,7 @@ namespace WindowsForms
 					cbRunAlarm.Checked = false;
 				}
 			}
-			else if
-				(music == 1 &&
-					(
-					Convert.ToInt32(Hours) == Convert.ToInt32(DateTime.Now.Hour.ToString()) &&
-					Convert.ToInt32(Minutes) == Convert.ToInt32(DateTime.Now.Minute.ToString()) &&
-					Convert.ToInt32(Seconds) == Convert.ToInt32(DateTime.Now.Second.ToString())
-					)
-				)//параметры введены и наступает время включить будильник
-			{
-				WMP.URL = nameFileMusic;
-				WMP.settings.volume = 100;
-				
-				WMP.controls.play();
-				music = 3;//музыка играет
-				btnSetupAlarm.Text = "Stop Alarm";
-				cbRunAlarm.Enabled = false;
-			}
-			else if (music == 3)//музыка играет и кнопка работает для остановки будильника
+			else if (music == 2)//музыка играет и кнопка работает для остановки будильника
 			{
 				WMP.controls.stop();
 				btnSetupAlarm.Text = "Setup Alarm";

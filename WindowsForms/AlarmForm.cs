@@ -13,7 +13,7 @@ namespace WindowsForms
 {
     public partial class AlarmForm : Form
     {
-        public string[] Records;
+        public List<string> Records;
         public string nameFileMusic = "";//путь до выбранного файла для сигнала будильника
         public string Hours = "";//установленные на будильнике часы
         public string Minutes = "";//установленные на будильнике минуты
@@ -24,7 +24,8 @@ namespace WindowsForms
             tbHour.Text =DateTime.Now.Hour.ToString();
             tbMinutes.Text = DateTime.Now.Minute.ToString();
             tbSeconds.Text = DateTime.Now.Second.ToString();
-            Records = new string[10];
+            Records= new List<string>();
+            //Records = new string[10];
             CheckStatus();
         }
 
@@ -140,7 +141,8 @@ namespace WindowsForms
                 //    return;
                 //}
             }
-            Records[Records.Length-1]=tbHour.Text+":"+tbMinutes.Text+":"+tbSeconds.Text+" "+nameFileMusic;
+            Records.Add(tbHour.Text+":"+tbMinutes.Text+":"+tbSeconds.Text+" "+nameFileMusic);
+            lblRecord.Text= lblRecord.Text+Records.Last() +"\n";
             string Record= tbHour.Text + ":"+ tbMinutes.Text + ":"+ tbSeconds.Text + " "+nameFileMusic.Split('\\').Last();
             listBox1.Items.Add(Record);
             CheckStatus();
