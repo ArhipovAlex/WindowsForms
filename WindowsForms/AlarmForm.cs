@@ -141,7 +141,7 @@ namespace WindowsForms
             }
             Records[Records.Length]=Hours+":"+Minutes+":"+Seconds+" "+nameFileMusic;
             string Record=Hours+":"+Minutes+":"+Seconds+" "+nameFileMusic.Split('\\').Last();
-            listBox1.Items.Add(Record);
+            listBoxAlarms.Items.Add(Record);
             CheckStatus();
         }
     }

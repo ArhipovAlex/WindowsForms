@@ -41,9 +41,11 @@
 			this.lblStatus = new System.Windows.Forms.Label();
 			this.btnChooseMusic = new System.Windows.Forms.Button();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.listBoxAlarms = new System.Windows.Forms.ListBox();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.btnSelectSound = new System.Windows.Forms.Button();
+			this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+			((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// btnOK
@@ -164,14 +166,14 @@
 			this.openFileDialog1.FileName = "openFileDialog1";
 			this.openFileDialog1.Filter = "Music files|*.mp3|All files|*.*";
 			// 
-			// listBox1
+			// listBoxAlarms
 			// 
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.ItemHeight = 16;
-			this.listBox1.Location = new System.Drawing.Point(12, 123);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(439, 196);
-			this.listBox1.TabIndex = 11;
+			this.listBoxAlarms.FormattingEnabled = true;
+			this.listBoxAlarms.ItemHeight = 16;
+			this.listBoxAlarms.Location = new System.Drawing.Point(12, 123);
+			this.listBoxAlarms.Name = "listBoxAlarms";
+			this.listBoxAlarms.Size = new System.Drawing.Size(228, 196);
+			this.listBoxAlarms.TabIndex = 11;
 			// 
 			// dateTimePicker1
 			// 
@@ -192,14 +194,24 @@
 			this.btnSelectSound.Text = "Select sound";
 			this.btnSelectSound.UseVisualStyleBackColor = true;
 			// 
+			// axWindowsMediaPlayer1
+			// 
+			this.axWindowsMediaPlayer1.Enabled = true;
+			this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(247, 124);
+			this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+			this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+			this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(207, 195);
+			this.axWindowsMediaPlayer1.TabIndex = 14;
+			// 
 			// AlarmForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(466, 421);
+			this.Controls.Add(this.axWindowsMediaPlayer1);
 			this.Controls.Add(this.btnSelectSound);
 			this.Controls.Add(this.dateTimePicker1);
-			this.Controls.Add(this.listBox1);
+			this.Controls.Add(this.listBoxAlarms);
 			this.Controls.Add(this.btnChooseMusic);
 			this.Controls.Add(this.lblStatus);
 			this.Controls.Add(this.label4);
@@ -215,6 +227,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "AlarmForm";
 			this.Text = "Настройки будильника";
+			((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -234,8 +247,9 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnChooseMusic;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.ListBox listBoxAlarms;
 		private System.Windows.Forms.DateTimePicker dateTimePicker1;
 		private System.Windows.Forms.Button btnSelectSound;
+		private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
 	}
 }
