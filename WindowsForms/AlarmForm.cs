@@ -141,6 +141,9 @@ namespace WindowsForms
                 //    return;
                 //}
             }
+            if(tbHour.Text.Length==1)tbHour.Text="0"+tbHour.Text;
+            if(tbMinutes.Text.Length==1)tbMinutes.Text="0"+tbMinutes.Text;
+            if(tbSeconds.Text.Length==1)tbSeconds.Text="0"+tbSeconds.Text;
             Records.Add(tbHour.Text+":"+tbMinutes.Text+":"+tbSeconds.Text+" "+nameFileMusic);
             lblRecord.Text= lblRecord.Text+Records.Last() +"\n";
             string Record= tbHour.Text + ":"+ tbMinutes.Text + ":"+ tbSeconds.Text + " "+nameFileMusic.Split('\\').Last();

@@ -97,14 +97,14 @@ namespace WindowsForms
 			if(cbRunAlarm.Checked)//включена функция Будильник
 			{ 
 				foreach (string record in Records)//Перебираем каждую строку и сравниваем время в списке с текущим
-				{
+				{					
+					string timeNow= DateTime.Now.ToString("T");
 					string date = record.Split(' ')[0];
 					nameFileMusic= record.Substring(9);
-					string timeNow= DateTime.Now.Hour.ToString()+":"+ DateTime.Now.Minute.ToString()+ ":"+DateTime.Now.Second.ToString();
 					if (date==timeNow&&music==1)//совпало время по списку и музыка готова
 					{
 						WMP.URL = nameFileMusic;
-						WMP.settings.volume = 100;
+						WMP.settings.volume = 20;
 						WMP.controls.play();
 						music = 2;//музыка играет
 						btnSetupAlarm.Text = "Stop Alarm";
@@ -114,7 +114,7 @@ namespace WindowsForms
 					{
 						WMP.controls.stop();
 						WMP.URL= nameFileMusic;
-						WMP.settings.volume = 100;
+						WMP.settings.volume = 20;
 						WMP.controls.play();
 					}
 				}
@@ -269,7 +269,7 @@ namespace WindowsForms
 						foreach(string element in alarmForm.Records)
 						{
 							Records.Add(element);
-							Console.WriteLine(element);
+							//Console.WriteLine(element);
 						}
 					}
 				}

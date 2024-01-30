@@ -46,6 +46,7 @@
 			// 
 			// btnOK
 			// 
+			this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.btnOK.Location = new System.Drawing.Point(12, 333);
@@ -58,6 +59,7 @@
 			// 
 			// btnCancel
 			// 
+			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.btnCancel.Location = new System.Drawing.Point(349, 333);
@@ -179,12 +181,13 @@
 			this.lblRecord.Name = "lblRecord";
 			this.lblRecord.Size = new System.Drawing.Size(0, 25);
 			this.lblRecord.TabIndex = 12;
+			this.lblRecord.Visible = false;
 			// 
 			// AlarmForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1106, 380);
+			this.ClientSize = new System.Drawing.Size(460, 380);
 			this.Controls.Add(this.lblRecord);
 			this.Controls.Add(this.listBox1);
 			this.Controls.Add(this.btnChooseMusic);
