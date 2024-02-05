@@ -33,6 +33,14 @@ namespace WindowsForms
 		string Minutes = "";//установленные на будильнике минуты
 		string Seconds = "";//установленные на будильнике секунды
 		List<string> Records;//список будильников
+		struct AlarmList
+			{
+			public string time { get; set; }
+			public DateTime dateDay { get; set; }
+			public string name { get; set; }
+
+		}
+		List<AlarmList> alarmList;
 		WMPLib.WindowsMediaPlayer WMP = new WMPLib.WindowsMediaPlayer();
 		public Form1()
 		{
