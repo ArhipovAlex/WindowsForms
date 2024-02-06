@@ -72,6 +72,7 @@
     <Compile Include="SettingAlarmForm.Designer.cs">
       <DependentUpon>SettingAlarmForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WeekDays.cs" />
     <EmbeddedResource Include="AlarmForm.resx">
       <DependentUpon>AlarmForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -11,6 +11,7 @@ using System.IO;
 using System.Drawing.Text;
 using System.Drawing.Imaging;
 using WMPLib;
+using System.Runtime.InteropServices;
 
 namespace WindowsForms
 {
@@ -32,12 +33,14 @@ namespace WindowsForms
 		string Hours = "";//установленные на будильнике часы
 		string Minutes = "";//установленные на будильнике минуты
 		string Seconds = "";//установленные на будильнике секунды
-		List<string> Records;//список будильников
+		List<AlarmList> Records;//список будильников
 		struct AlarmList
 			{
+
 			public string time { get; set; }
 			public DateTime dateDay { get; set; }
 			public string name { get; set; }
+			public byte weekdays { get; set; }
 
 		}
 		List<AlarmList> alarmList;
@@ -58,7 +61,7 @@ namespace WindowsForms
 			label1.BackColor = Color.Black;
 			size = 48;
 			LoadSettings();
-			Records = new List<string>();
+			//Records = new List<string>();
 			cbRunAlarm.Enabled = false;//изначально включить будильник нельзя, пока не введены настройки
 
 		}
@@ -104,6 +107,7 @@ namespace WindowsForms
 			}*/
 			if(cbRunAlarm.Checked)//включена функция Будильник
 			{ 
+				/*
 				foreach (string record in Records)//Перебираем каждую строку и сравниваем время в списке с текущим
 				{					
 					string timeNow= DateTime.Now.ToString("T");
@@ -125,10 +129,13 @@ namespace WindowsForms
 						WMP.settings.volume = 20;
 						WMP.controls.play();
 					}
-				}
+				}*/
 			}
 
 		}
+		[DllImport("kernel32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		static extern bool AllocConsole();
 
 		private void btnExit_Click(object sender, EventArgs e)
 		{
@@ -276,7 +283,7 @@ namespace WindowsForms
 						//}
 						foreach(string element in alarmForm.Records)
 						{
-							Records.Add(element);
+							//Records.Add(element);
 							//Console.WriteLine(element);
 						}
 					}
